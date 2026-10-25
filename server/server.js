@@ -108,6 +108,15 @@ app.get('/api/health', (req, res) => {
 // Centralized error handler
 app.use(errorHandler);
 
+// In production, serve the built frontend assets
+if (process.env.NODE_ENV === 'production') {
+  const clientDistPath = path.join(__dirname, '../client/dist');
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
+
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== 'test') {

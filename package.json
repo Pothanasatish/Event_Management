@@ -6,11 +6,12 @@
   "scripts": {
     "install:all": "npm install && npm install --prefix server && npm install --prefix client",
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run install:all && npm run build --prefix client",
+    "start": "node server/server.js",
     "seed": "npm run seed --prefix server",
     "test": "npm run test --prefix server && npm run test --prefix client",
     "test:server": "npm run test --prefix server",
-    "test:client": "npm run test --prefix client",
-    "build": "npm run build --prefix client"
+    "test:client": "npm run test --prefix client"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
