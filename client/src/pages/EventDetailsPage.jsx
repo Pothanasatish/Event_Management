@@ -256,9 +256,14 @@ export const EventDetailsPage = () => {
       {/* 1. Hero Cover Header */}
       <div className="relative w-full h-72 sm:h-96 lg:h-[450px] bg-slate-900 overflow-hidden">
         <img
-          src={event.coverImage}
+          src={event.coverImage || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80'}
           alt={event.title}
           className="w-full h-full object-cover opacity-80"
+          crossOrigin="anonymous"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 

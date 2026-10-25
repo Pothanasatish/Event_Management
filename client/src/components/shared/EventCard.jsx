@@ -64,6 +64,11 @@ export const EventCard = ({
             alt={event.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
+            crossOrigin="anonymous"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80';
+            }}
           />
           {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
@@ -186,10 +191,15 @@ export const EventCard = ({
     >
       <div className="relative w-full sm:w-64 aspect-[16/9] sm:aspect-auto overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
         <img
-          src={event.coverImage}
+          src={event.coverImage || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80'}
           alt={event.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          crossOrigin="anonymous"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80';
+          }}
         />
         <div className="absolute top-3 left-3">
           <Badge variant="indigo" size="sm" className="bg-white/90 dark:bg-slate-900/90 shadow-sm">

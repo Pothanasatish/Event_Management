@@ -37,7 +37,29 @@ app.use(cookieParser());
 // Security headers
 app.use(
   helmet({
-    crossOriginResourcePolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+        imgSrc: [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://images.unsplash.com",
+          "https://plus.unsplash.com",
+          "https://res.cloudinary.com",
+          "https://ui-avatars.com",
+          "https://images.pexels.com",
+        ],
+        connectSrc: ["'self'", "https:", "http:"],
+        mediaSrc: ["'self'"],
+        objectSrc: ["'none'"],
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    crossOriginEmbedderPolicy: false,
   })
 );
 
